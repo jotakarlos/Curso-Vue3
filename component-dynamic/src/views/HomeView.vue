@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineAsyncComponent, DefineComponent } from 'vue'
+import { ref, defineAsyncComponent, Ref } from 'vue'
 
 const ListLayout = defineAsyncComponent(() => import('@/layouts/ListLayout.vue'))
 const TableLayout = defineAsyncComponent(() => import('@/layouts/TableLayout.vue'))
@@ -20,7 +20,7 @@ const CardLayout = defineAsyncComponent(() => import('@/layouts/CardLayout.vue')
 const layout = ref(ListLayout)
 const search = ref('')
 
-const handleLayout = (cmp) => layout.value = cmp
+const handleLayout = (cmp: any) => layout.value = cmp
 
 const handleSearch = () => {
   filteredUsers.value = users.value.filter(item => item.name.toLowerCase().includes(search.value.toLowerCase()))
@@ -53,7 +53,7 @@ const users = ref([
     position: "backend"
   },
 ])
-const filteredUsers = ref([])
+const filteredUsers: Ref<Array<any>> = ref([])
 filteredUsers.value = users.value
 
 </script>
